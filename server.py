@@ -24,15 +24,6 @@ page = """
     <h1 style="position: absolute; top: 3px; text-align: left; margin-left: 3%;">{}</h1>
     <p style="position: absolute; top: 20px; right: 3px; text-align: right; margin-right: 3%; color: gray;">{}</p>
     <br><br><br><br><br><br>
-    <div style="position: absolute; left: 40%;">
-    <h1 style="text-align: right;">{}</h1>
-    <p style="color: gray;">{}</p>
-    </div>
-    <div style="position: absolute; right: 40%;">
-    <h1 style="text-align: left;">{}</h1>
-    <p style="color: gray;">{}</p>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <h1 style="text-align: center;">Posts</h1>
     <br><br><br>
     <hr>
@@ -62,6 +53,12 @@ page = """
     </div>
     <br><br>
     <div style="text-align: center;">
+
+
+
+
+
+
     <h1>{}</h1>
     <br>
     <p>{}</p>
@@ -72,10 +69,6 @@ page = """
     setup["title"],
     setup["title"],
     setup["description"],
-    setup["postname"][0],
-    setup["postcontent"][0],
-    setup["postname"][1],
-    setup["postcontent"][1],
     setup["postname"][0],
     setup["postcontent"][0],
     setup["postname"][1],
