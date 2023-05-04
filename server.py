@@ -5,8 +5,26 @@ setup = x.read()
 x.close()
 setup = json.loads(setup)
 del x
+names = setup["postname"]
+contents = setup["postcontent"]
+class Post():
+    def __init__(self,title,content):
+        self.title = title
+        self.content = content
+z = list()
+index = 0
+for y in names:
+    a = contents[index]
+    z.append(Post(y,a))
+    index = index + 1
+posthtml = list()
+for b in z: posthtml.append("<div style=\"text-align: center;\"><h1>{}</h1><p>{}</p></div>".format(b.title, b.content))
 port = input("Please select a port for the server: ")
-page = """
+d = ""
+for c in posthtml:
+    d = d + c
+posthtml = d
+htmlpage = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,76 +35,37 @@ page = """
     <style>
     body {{
     font-family: 'Segoe UI', sans-serif;
+    margin: 0px;
+    }}
+    .header {{
+        width: 100%;
+        height: 33%;
+        background: rgb(0,11,255);
+        background: linear-gradient(146deg, rgba(0,11,255,1) 0%, rgba(255,244,0,1) 100%); 
     }}
     </style>
 </head>
 <body>
-    <h1 style="position: absolute; top: 3px; text-align: left; margin-left: 3%;">{}</h1>
-    <p style="position: absolute; top: 20px; right: 3px; text-align: right; margin-right: 3%; color: gray;">{}</p>
-    <br><br><br><br><br><br>
-    <h1 style="text-align: center;">Posts</h1>
-    <br><br><br>
+<div class="header">
+    <span style="height: 120%;font-size: 2em; font-weight: bold; text-align: left; margin-left: 3%; margin-top: 0%; color: #fff400;">{}</span>
+    <span style="text-align: right; margin-right: 3%; margin-top: 0.5%; color: #000bff; float: right;">{}</span>
+    
+    <h1 style="text-align: center;color: white;">Posts</h1>
+    <br>
+    </div>
     <hr>
-    <br><br>
-    <div style="text-align: center;">
-    <h1>{}</h1>
     <br>
-    <p>{}</p>
-    </div>
-    <br><br>
-    <div style="text-align: center;">
-    <h1>{}</h1>
-    <br>
-    <p>{}</p>
-    </div>
-    <br><br>
-    <div style="text-align: center;">
-    <h1>{}</h1>
-    <br>
-    <p>{}</p>
-    </div>
-    <br><br>
-    <div style="text-align: center;">
-    <h1>{}</h1>
-    <br>
-    <p>{}</p>
-    </div>
-    <br><br>
-    <div style="text-align: center;">
-
-
-
-
-
-
-    <h1>{}</h1>
-    <br>
-    <p>{}</p>
-    </div>
+    {}
 </body>
 </html>
-""".format(
-    setup["title"],
-    setup["title"],
-    setup["description"],
-    setup["postname"][0],
-    setup["postcontent"][0],
-    setup["postname"][1],
-    setup["postcontent"][1],
-    setup["postname"][2],
-    setup["postcontent"][2],
-    setup["postname"][3],
-    setup["postcontent"][3],
-    setup["postname"][4],
-    setup["postcontent"][4],
-)
+""".format(setup["title"], setup["title"], setup["description"], posthtml)
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
+        self.send_response(418)
         self.send_header('Content-type','text/html')
         self.end_headers()
 
-        self.wfile.write(bytes(page, "utf8"))
+        self.wfile.write(bytes(htmlpage, "utf8"))
 
 with HTTPServer(('', int(port)), handler) as server:
     server.serve_forever()

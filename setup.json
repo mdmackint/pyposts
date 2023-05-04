@@ -1,7 +1,6 @@
 {
-    "title": "Example blog using pyposts",
-    "description": "My blog, made with kaiete/pyposts",
-    "postname": ["Hello","And","","",""],
-    "postcontent": ["This is an example post.","here is another one.","","",""],
-    "comment": "If you don't want to have 5 posts, then just leave some blank. Don't omit them, though."
+    "title": "Welcome to PyPosts",
+    "description": "PyPosts stands in solidarity with the people of Ukraine.",
+    "postname": ["How to Use", "Any Problems?"],
+    "postcontent": ["To get started, just open <b>setup.json</b> and add your posts!", "If you're having trouble, just go to github.com/kaiete/pyposts and tap Issues."]
 }
